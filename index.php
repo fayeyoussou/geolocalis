@@ -199,7 +199,7 @@ switch (ENVIRONMENT)
 		chdir(dirname(__FILE__));
 	}
 
-	if (($_temp = realpath($system_path)) !== FALSE)
+	if (($_temp = realpath($system_path)) !== false)
 	{
 		$system_path = $_temp.DIRECTORY_SEPARATOR;
 	}
