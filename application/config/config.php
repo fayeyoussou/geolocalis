@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = "http://192.168.1.17/geolocalis/";
-//$config['base_url'] = "http://localhost/geolocalis/";
-$config['base_url'] = "https://linklogistic.sn/geolocalis/";
+$config['base_url'] = "http://localhost:8888/";
+//$config['base_url'] = "https://linklogistic.sn/geolocalis/";
 
 /*
 |--------------------------------------------------------------------------

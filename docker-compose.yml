@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  app:
+    image: php:7.4-apache
+    container_name: ci3_app
+    volumes:
+      - .:/var/www/html  # Adjusted to current folder
+    ports:
+      - "8087:80"
+    depends_on:
+      - db
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    networks:
+      - ci_network
+
+  db:
+    image: mysql:8.0  # Updated for ARM compatibility
+    container_name: ci3_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: linklztc_geolocalis
+      MYSQL_USER: linklztc_geolocalis
+      MYSQL_PASSWORD: geolocalis
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - ci_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: ci3_phpmyadmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - ci_network
+
+volumes:
+  db_data:
+
+networks:
+  ci_network:
+    driver: bridge
